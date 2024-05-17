@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+#myBox
+{
+  margin: 2px ;
+  padding: 5px;
+  width: 500px;
+
+}
+
+
+.main_box
+{
+  margin: 100px;
+  margin-top: 40px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+
+.buttons
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  margin: 5px;
+  padding: 5px;
+}
