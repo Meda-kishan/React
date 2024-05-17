@@ -5,6 +5,38 @@ export default function Myfunc(props)
 {
 
     const [text,setText]=useState("");
+    const [btnText,setbtnText]=useState("Enable Dark  Mode");
+
+    const [darkStyle,setdarkStyle]=useState({
+        color : '#000',
+        backgroundColor : '#fff'
+    });
+
+    let set_darkmode_style=() =>{
+        if(darkStyle.color==='#000')
+        {
+            setdarkStyle({
+            color :'#fff',
+            backgroundColor: "#000"
+            }
+            ),
+            setbtnText("Enable White mode")
+        }
+
+        else
+        {
+            if(darkStyle.color==='#fff')
+            {
+                setdarkStyle({
+                color :'#000',
+                backgroundColor: "#fff"
+                }
+                ),
+                setbtnText("Enable Dark mode")
+            }            
+
+        }
+    }
 
     const handleClick_uppercase=() =>{
         console.log("button is clicked");
@@ -35,10 +67,10 @@ export default function Myfunc(props)
 
         </div> */}
 
-        <div className="main_box">
+        <div className="main_box" style={darkStyle}>
             <div>
                 <h1>Enter the text </h1>
-                <textarea className="txt_area" id="myBox" rows="15" value={text} onChange={handleChange}> </textarea>
+                <textarea className="txt_area" id="myBox" rows="5" value={text} onChange={handleChange}> </textarea>
             </div>
 
             <div className="buttons">
@@ -47,9 +79,11 @@ export default function Myfunc(props)
                 <button onClick={handleClick_lowercase}>Convert to Lowercase</button>
 
                 <button onClick={handleClick_clearText}>Clear Text</button>
+
+                <button onClick={set_darkmode_style}>{btnText}</button>
             </div>
 
-            <div className="container">
+            <div className="container" >
                  <h1>{props.summary}</h1>
                  <p>{text.split(" ").length} words and {text.length} characters</p>
                  <p>{0.008 * text.split(" ").length} Minutes to read</p>
