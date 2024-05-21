@@ -13,14 +13,14 @@ export default function Myfunc(props)
     });
 
     let set_darkmode_style=() =>{
-        if(darkStyle.color==='#000')
+
+       if(darkStyle.color==='#000')
         {
             setdarkStyle({
             color :'#fff',
-            backgroundColor: "#000"
-            }
-            ),
-            setbtnText("Enable White mode")
+            backgroundColor: '#000'
+            });
+            setbtnText("Enable White mode");
         }
 
         else
@@ -30,12 +30,16 @@ export default function Myfunc(props)
                 setdarkStyle({
                 color :'#000',
                 backgroundColor: "#fff"
-                }
-                ),
+                });
                 setbtnText("Enable Dark mode")
             }            
 
         }
+    }
+
+    const handleCopy=() =>{
+        let txt=text;
+        navigator.clipboard.writeText(txt);
     }
 
     const handleClick_uppercase=() =>{
@@ -67,9 +71,9 @@ export default function Myfunc(props)
 
         </div> */}
 
-        <div className="main_box" style={darkStyle}>
+        <div className={`main_box bg-${props.mode==='dark' ? 'secondary': 'light'}`} style={darkStyle}>
             <div>
-                <h1>Enter the text </h1>
+                <h1 className={`heading text-${props.mode==='dark' ? 'white' : 'black'}`}>Enter the text </h1>
                 <textarea className="txt_area" id="myBox" rows="5" value={text} onChange={handleChange}> </textarea>
             </div>
 
@@ -80,19 +84,21 @@ export default function Myfunc(props)
 
                 <button onClick={handleClick_clearText}>Clear Text</button>
 
-                <button onClick={set_darkmode_style}>{btnText}</button>
+                {/* <button onClick={set_darkmode_style}>{btnText}</button> */}
+
+                <button onClick={handleCopy}>Copy</button>
             </div>
 
             <div className="container" >
-                 <h1>{props.summary}</h1>
+                 <h1 className={`text_summary_head text-${props.mode==='dark' ? 'white' : 'black'}`}>{props.summary}</h1>
                  <p>{text.split(" ").length} words and {text.length} characters</p>
                  <p>{0.008 * text.split(" ").length} Minutes to read</p>
 
             </div>
 
             <div className="preview">
-                <h2>Preview</h2>
-                <p>{text}</p>
+                <h2 className={`prev_head text-${props.mode==='dark' ? 'white' : 'black'}`}>Preview</h2>
+                <p className={`inpt_txt text-${props.mode==='dark' ? 'white' : 'black'}`}>{text.length>0 ? text : "Enter the text in the text box to preview"}</p>
             </div>
 
         </div>
